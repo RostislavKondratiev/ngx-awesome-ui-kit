@@ -2,12 +2,212 @@
   "$schema": "./node_modules/@angular/cli/lib/config/schema.json",
   "version": 1,
   "newProjectRoot": "",
-  "projects": {},
+  "projects": {
+    "auk": {
+      "root": "apps/auk/",
+      "sourceRoot": "apps/auk/src",
+      "projectType": "application",
+      "prefix": "auk",
+      "schematics": {},
+      "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-angular:browser",
+          "options": {
+            "outputPath": "dist/apps/auk",
+            "index": "apps/auk/src/index.html",
+            "main": "apps/auk/src/main.ts",
+            "polyfills": "apps/auk/src/polyfills.ts",
+            "tsConfig": "apps/auk/tsconfig.app.json",
+            "assets": [
+              "apps/auk/src/favicon.ico",
+              "apps/auk/src/assets"
+            ],
+            "styles": [
+              "apps/auk/src/styles.css"
+            ],
+            "scripts": []
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/auk/src/environments/environment.ts",
+                  "with": "apps/auk/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "aot": true,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "buildOptimizer": true
+            }
+          }
+        },
+        "serve": {
+          "builder": "@angular-devkit/build-angular:dev-server",
+          "options": {
+            "browserTarget": "auk:build"
+          },
+          "configurations": {
+            "production": {
+              "browserTarget": "auk:build:production"
+            }
+          }
+        },
+        "extract-i18n": {
+          "builder": "@angular-devkit/build-angular:extract-i18n",
+          "options": {
+            "browserTarget": "auk:build"
+          }
+        },
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "apps/auk/src/test.ts",
+            "polyfills": "apps/auk/src/polyfills.ts",
+            "tsConfig": "apps/auk/tsconfig.spec.json",
+            "karmaConfig": "apps/auk/karma.conf.js",
+            "styles": [
+              "apps/auk/src/styles.css"
+            ],
+            "scripts": [],
+            "assets": [
+              "apps/auk/src/favicon.ico",
+              "apps/auk/src/assets"
+            ]
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "apps/auk/tsconfig.app.json",
+              "apps/auk/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "auk-e2e": {
+      "root": "apps/auk-e2e/",
+      "projectType": "application",
+      "architect": {
+        "e2e": {
+          "builder": "@angular-devkit/build-angular:protractor",
+          "options": {
+            "protractorConfig": "apps/auk-e2e/protractor.conf.js",
+            "devServerTarget": "auk:serve"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": "apps/auk-e2e/tsconfig.e2e.json",
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "layout": {
+      "root": "libs/layout",
+      "sourceRoot": "libs/layout/src",
+      "projectType": "library",
+      "prefix": "auk",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/layout/src/test.ts",
+            "tsConfig": "libs/layout/tsconfig.spec.json",
+            "karmaConfig": "libs/layout/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/layout/tsconfig.lib.json",
+              "libs/layout/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "forms": {
+      "root": "libs/forms",
+      "sourceRoot": "libs/forms/src",
+      "projectType": "library",
+      "prefix": "auk",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/forms/src/test.ts",
+            "tsConfig": "libs/forms/tsconfig.spec.json",
+            "karmaConfig": "libs/forms/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/forms/tsconfig.lib.json",
+              "libs/forms/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    },
+    "table": {
+      "root": "libs/table",
+      "sourceRoot": "libs/table/src",
+      "projectType": "library",
+      "prefix": "auk",
+      "architect": {
+        "test": {
+          "builder": "@angular-devkit/build-angular:karma",
+          "options": {
+            "main": "libs/table/src/test.ts",
+            "tsConfig": "libs/table/tsconfig.spec.json",
+            "karmaConfig": "libs/table/karma.conf.js"
+          }
+        },
+        "lint": {
+          "builder": "@angular-devkit/build-angular:tslint",
+          "options": {
+            "tsConfig": [
+              "libs/table/tsconfig.lib.json",
+              "libs/table/tsconfig.spec.json"
+            ],
+            "exclude": [
+              "**/node_modules/**"
+            ]
+          }
+        }
+      }
+    }
+  },
   "cli": {
     "warnings": {
       "typescriptMismatch": false,
       "versionMismatch": false
     },
     "defaultCollection": "@nrwl/schematics"
-  }
+  },
+  "defaultProject": "auk-forms"
 }

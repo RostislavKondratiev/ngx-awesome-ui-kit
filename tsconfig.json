@@ -16,6 +16,15 @@
     ],
     "baseUrl": ".",
     "paths": {
+      "@auk/layout": [
+        "libs/layout/src/index.ts"
+      ],
+      "@auk/forms": [
+        "libs/forms/src/index.ts"
+      ],
+      "@auk/table": [
+        "libs/table/src/index.ts"
+      ]
     }
   },
   "exclude": [

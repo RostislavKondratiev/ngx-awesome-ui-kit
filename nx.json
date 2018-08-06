@@ -1,5 +1,5 @@
 {
-  "npmScope": "ngx-awesome-ui-kit",
+  "npmScope": "auk",
   "implicitDependencies": {
     "angular.json": "*",
     "package.json": "*",
@@ -7,5 +7,21 @@
     "tslint.json": "*",
     "nx.json": "*"
   },
-  "projects": {}
+  "projects": {
+    "auk": {
+      "tags": []
+    },
+    "auk-e2e": {
+      "tags": []
+    },
+    "layout": {
+      "tags": []
+    },
+    "forms": {
+      "tags": []
+    },
+    "table": {
+      "tags": []
+    }
+  }
 }

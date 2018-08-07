@@ -1,16 +1,16 @@
 import { async, TestBed } from '@angular/core/testing';
-import { FormsModule } from './forms.module';
+import { AukFormsModule } from './forms.module';
 
 describe('FormsModule', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        imports: [FormsModule]
+        imports: [AukFormsModule]
       }).compileComponents();
     })
   );
 
   it('should create', () => {
-    expect(FormsModule).toBeDefined();
+    expect(AukFormsModule).toBeDefined();
   });
 });

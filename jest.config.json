@@ -1,0 +1,28 @@
+{
+  "globals": {
+    "ts-jest": {
+      "tsConfigFile": "tsconfig.spec.json"
+    },
+    "__TRANSFORM_HTML__": true
+  },
+  "preset": "jest-preset-angular",
+  "roots": [
+    "<rootDir>/apps/",
+    "<rootDir>/libs/"
+  ],
+  "testURL": "http://localhost",
+  "collectCoverage":true,
+  "collectCoverageFrom": [
+    "**/*.{ts}",
+    "!**/*-{e2e}/**",
+    "!**/node_modules/**",
+    "!**/vendor/**",
+    "!**/environments/**",
+    "!jest/**",
+    "!**/main.ts",
+    "!**/polyfills.ts",
+    "!**/test.ts",
+    "!**/index.ts"
+  ],
+  "setupTestFrameworkScriptFile": "./jest/setupJest.ts"
+}

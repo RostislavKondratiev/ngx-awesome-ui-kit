@@ -1,16 +1,16 @@
 import { async, TestBed } from '@angular/core/testing';
-import { LayoutModule } from './layout.module';
+import { AukLayoutModule } from './layout.module';
 
 describe('LayoutModule', () => {
   beforeEach(
     async(() => {
       TestBed.configureTestingModule({
-        imports: [LayoutModule]
+        imports: [AukLayoutModule]
       }).compileComponents();
     })
   );
 
   it('should create', () => {
-    expect(LayoutModule).toBeDefined();
+    expect(AukLayoutModule).toBeDefined();
   });
 });

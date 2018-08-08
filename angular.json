@@ -123,6 +123,18 @@
       "projectType": "library",
       "prefix": "auk",
       "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/layout/tsconfig.lib.json",
+            "project": "libs/layout/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/layout/ng-package.prod.json"
+            }
+          }
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {
@@ -191,6 +203,18 @@
       "projectType": "library",
       "prefix": "auk",
       "architect": {
+        "build": {
+          "builder": "@angular-devkit/build-ng-packagr:build",
+          "options": {
+            "tsConfig": "libs/table/tsconfig.lib.json",
+            "project": "libs/table/ng-package.json"
+          },
+          "configurations": {
+            "production": {
+              "project": "libs/table/ng-package.prod.json"
+            }
+          }
+        },
         "test": {
           "builder": "@angular-devkit/build-angular:karma",
           "options": {

@@ -3,7 +3,7 @@
   "compilerOptions": {
     "outDir": "../../dist/out-tsc/libs/forms",
     "types": [
-      "jasmine",
+      "jest",
       "node"
     ]
   },

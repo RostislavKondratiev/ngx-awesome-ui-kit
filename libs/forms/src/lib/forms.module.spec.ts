@@ -1,5 +1,5 @@
 import { async, TestBed } from '@angular/core/testing';
-import { AukFormsModule } from './forms.module';
+import { AukFormsModule } from '@auk/forms';
 
 describe('FormsModule', () => {
   beforeEach(

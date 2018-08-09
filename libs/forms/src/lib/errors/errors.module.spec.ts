@@ -1,10 +1,10 @@
-import { ErrorsModule } from './errors.module';
+import { AukErrorsModule } from './errors.module';
 
 describe('ErrorsModule', () => {
-  let errorsModule: ErrorsModule;
+  let errorsModule: AukErrorsModule;
 
   beforeEach(() => {
-    errorsModule = new ErrorsModule();
+    errorsModule = new AukErrorsModule();
   });
 
   it('should create an instance', () => {

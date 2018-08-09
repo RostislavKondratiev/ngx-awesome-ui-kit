@@ -1,4 +1,4 @@
-import { Directive, ElementRef, Optional, Self } from '@angular/core';
+import { Directive, ElementRef, HostBinding, Input, Optional, Self } from '@angular/core';
 import { AukBaseInput } from '../core/base-input/base-input';
 import { FormFieldControl } from '../core/form-field-control';
 
@@ -11,6 +11,7 @@ let nextUniqueId = 0;
 export class AukInputDirective extends AukBaseInput {
   protected _uid = `auk-input-${nextUniqueId++}`;
 
+  @Input()
   public get value() {
     return this.element.nativeElement.value;
   }
@@ -22,8 +23,10 @@ export class AukInputDirective extends AukBaseInput {
     }
   }
 
+  @HostBinding('disabled')
+  @Input()
   get disabled() {
-    if (this.control && this.control.disabled !== null) {
+    if (!this._disabled && this.control && this.control.disabled !== null) {
       return this.ngControl.disabled;
     }
     return this._disabled;

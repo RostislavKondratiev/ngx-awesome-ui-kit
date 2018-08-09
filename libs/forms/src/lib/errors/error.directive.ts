@@ -29,7 +29,6 @@ export class AukErrorDirective implements AfterViewInit {
     }
     this.control = this.container.control;
     // this.form = this.container.input.parent;
-    console.log(this.container.statusChanges$);
     this.container.statusChanges$
       .subscribe((invalid) => {
         this.hidden = !(invalid && this.control.hasError(this.key));

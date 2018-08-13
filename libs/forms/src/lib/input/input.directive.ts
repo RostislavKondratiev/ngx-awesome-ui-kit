@@ -13,12 +13,12 @@ export class AukInputDirective extends AukBaseInput {
 
   @Input()
   public get value() {
-    return this.element.nativeElement.value;
+    return this.element.value;
   }
 
   public set value(value: string) {
     if (value !== this.value) {
-      this.element.nativeElement.value = value;
+      this.element.value = value;
       this.stateChange$.next();
     }
   }
@@ -38,5 +38,9 @@ export class AukInputDirective extends AukBaseInput {
       this.focused = false;
       this.stateChange$.next();
     }
+  }
+
+  public focus() {
+    this.element.focus();
   }
 }

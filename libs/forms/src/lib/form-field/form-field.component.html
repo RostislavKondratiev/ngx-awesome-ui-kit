@@ -1,4 +1,18 @@
-<div>
-  <ng-content></ng-content>
-  <auk-error key="required">Required</auk-error>
+<div class="view-wrap">
+  <label>
+    <ng-content select="auk-label"></ng-content>
+  </label>
+  <div class="input-field">
+    <div class="input-wrap">
+      <ng-content></ng-content>
+    </div>
+    <auk-error *ngIf="availableCustom.indexOf('required') === -1" key="required">This field is required</auk-error>
+    <auk-error *ngIf="availableCustom.indexOf('minlength') === -1" key="minlength">This field is too short</auk-error>
+    <auk-error *ngIf="availableCustom.indexOf('maxlength') === -1" key="maxlength">This field is too long</auk-error>
+    <auk-error *ngIf="availableCustom.indexOf('pattern') === -1" key="pattern">Invalid Field</auk-error>
+    <auk-error *ngIf="availableCustom.indexOf('email') === -1" key="email">Invalid Email Address</auk-error>
+    <ng-content select="auk-error"></ng-content>
+    <ng-content select="auk-server-error"></ng-content>
+  </div>
 </div>
+

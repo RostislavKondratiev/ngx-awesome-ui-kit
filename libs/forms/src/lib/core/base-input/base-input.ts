@@ -1,20 +1,12 @@
 import { FormGroupDirective, NgControl, NgForm } from '@angular/forms';
-import {
-  DoCheck,
-  ElementRef,
-  HostBinding,
-  HostListener,
-  Input,
-  OnDestroy,
-  OnInit,
-  Optional,
-  Self
-} from '@angular/core';
+import { DoCheck, ElementRef, HostBinding, HostListener, Input, OnDestroy, Optional, Self } from '@angular/core';
 import { FormFieldControl } from '@auk/forms';
 import { Subject } from 'rxjs';
 
 export abstract class AukBaseInput implements FormFieldControl, DoCheck, OnDestroy {
   public readonly stateChange$: Subject<void> = new Subject<void>();
+
+  @HostBinding('class.auk-focused')
   public focused = false;
 
   protected _id: string;
@@ -42,6 +34,7 @@ export abstract class AukBaseInput implements FormFieldControl, DoCheck, OnDestr
     this._id = value || this._uid;
   }
 
+  @Input()
   public get required(): boolean {
     return this._required;
   }
@@ -50,6 +43,8 @@ export abstract class AukBaseInput implements FormFieldControl, DoCheck, OnDestr
     this._required = !!value;
   }
 
+  @HostBinding('readonly')
+  @Input()
   public get readonly(): boolean {
     return this._readonly;
   }
@@ -70,13 +65,13 @@ export abstract class AukBaseInput implements FormFieldControl, DoCheck, OnDestr
     return this._parentFormGroup || this._parentForm;
   }
 
-  @HostBinding('class.has-error')
+  @HostBinding('class.auk-has-error')
   public hasError = false;
 
   @HostListener('blur', ['false'])
   @HostListener('focus', ['true'])
   public focusChanged(isFocused: boolean) {
-    if (isFocused !== this.focused && !this._readonly) {
+    if (isFocused !== this.focused && !this.readonly) {
       this.focused = isFocused;
       this.stateChange$.next();
     }
@@ -92,9 +87,7 @@ export abstract class AukBaseInput implements FormFieldControl, DoCheck, OnDestr
     this.stateChange$.next();
   }
 
-  public focus(): void {
-    this.element.nativeElement.focus();
-  }
+  public abstract focus();
 
   public ngOnDestroy() {
     this.stateChange$.complete();

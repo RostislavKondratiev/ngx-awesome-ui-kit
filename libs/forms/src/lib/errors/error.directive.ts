@@ -1,4 +1,12 @@
-import { AfterViewInit, ChangeDetectorRef, Directive, HostBinding, Injector, Input } from '@angular/core';
+import {
+  AfterViewInit,
+  ChangeDetectorRef,
+  Directive,
+  HostBinding,
+  InjectionToken,
+  Injector,
+  Input
+} from '@angular/core';
 import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
 import { AukFormFieldComponent } from '../form-field/form-field.component';
 
@@ -14,7 +22,6 @@ export class AukErrorDirective implements AfterViewInit {
   public container: AukFormFieldComponent;
 
   protected control: FormControl;
-  // protected form: FormGroupDirective | NgForm;
 
   constructor(
     protected injector: Injector,
@@ -24,11 +31,10 @@ export class AukErrorDirective implements AfterViewInit {
 
   public ngAfterViewInit() {
     this.container = this.injector.get(AukFormFieldComponent, null);
-    if (!this.container) {
+    if (!this.container || !this.container.statusChanges$) {
       return;
     }
     this.control = this.container.control;
-    // this.form = this.container.input.parent;
     this.container.statusChanges$
       .subscribe((invalid) => {
         this.hidden = !(invalid && this.control.hasError(this.key));

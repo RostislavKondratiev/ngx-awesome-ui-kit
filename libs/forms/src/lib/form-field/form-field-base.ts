@@ -1,4 +1,4 @@
-import { AfterContentInit, AfterViewInit, ContentChild, Inject, OnDestroy } from '@angular/core';
+import { AfterContentInit, ContentChild, OnDestroy } from '@angular/core';
 import { merge, Observable, Subject } from 'rxjs';
 import { FormControl } from '@angular/forms';
 import { map, share, takeUntil } from 'rxjs/operators';
@@ -18,13 +18,16 @@ export abstract class FormFieldBase implements AfterContentInit, OnDestroy {
   }
 
   public ngAfterContentInit() {
+    if (!this.input.control) {
+      return;
+    }
     this.control = this.input.control.control as FormControl;
     this.statusChanges$ = merge(this.control.statusChanges, this.input.stateChange$)
       .pipe(
         takeUntil(this.until$),
         map(() => this.input.hasError = this.errorStrategy.validate(this.control, this.input.parent)),
         share()
-      )
+      );
   }
 
   public ngOnDestroy() {

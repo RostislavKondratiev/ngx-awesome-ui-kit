@@ -18,7 +18,9 @@
     "!**/polyfills.ts",
     "!**/test.ts",
     "!**/index.ts",
-    "!**/jest/**"
+    "!**/jest/**",
+    "!**/public-api.ts",
+    "!**/tests/**"
   ],
   "setupTestFrameworkScriptFile": "<rootDir>/jest/setupJest.ts"
 }

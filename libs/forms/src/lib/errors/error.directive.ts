@@ -1,13 +1,5 @@
-import {
-  AfterViewInit,
-  ChangeDetectorRef,
-  Directive,
-  HostBinding,
-  InjectionToken,
-  Injector,
-  Input
-} from '@angular/core';
-import { FormControl, FormGroupDirective, NgForm } from '@angular/forms';
+import { AfterViewInit, ChangeDetectorRef, Directive, HostBinding, Injector, Input } from '@angular/core';
+import { FormControl } from '@angular/forms';
 import { AukFormFieldComponent } from '../form-field/form-field.component';
 
 @Directive({

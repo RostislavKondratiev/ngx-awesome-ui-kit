@@ -5,7 +5,7 @@ import {
   Component, ContentChildren, QueryList,
   ViewEncapsulation
 } from '@angular/core';
-import { FormFieldBase } from './form-field-base';
+import { AukFormFieldBase } from './form-field-base';
 import { AukErrorStrategy } from './error-strategy/error-strategy';
 import { AukErrorDirective } from './../errors/error.directive';
 import { takeUntil } from 'rxjs/operators';
@@ -17,7 +17,7 @@ import { takeUntil } from 'rxjs/operators';
   encapsulation: ViewEncapsulation.None,
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class AukFormFieldComponent extends FormFieldBase implements AfterContentInit {
+export class AukFormFieldComponent extends AukFormFieldBase implements AfterContentInit {
   @ContentChildren(AukErrorDirective) public errors: QueryList<AukErrorDirective>;
   public availableCustom: string[] = [];
   constructor(protected errorStrategy: AukErrorStrategy, private cd: ChangeDetectorRef) {

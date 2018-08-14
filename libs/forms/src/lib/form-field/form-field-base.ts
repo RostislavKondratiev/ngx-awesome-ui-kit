@@ -5,7 +5,7 @@ import { map, share, takeUntil } from 'rxjs/operators';
 import { FormFieldControl } from './../core/form-field-control';
 import { AukErrorStrategy } from './error-strategy';
 
-export abstract class FormFieldBase implements AfterContentInit, OnDestroy {
+export abstract class AukFormFieldBase implements AfterContentInit, OnDestroy {
   @ContentChild(FormFieldControl) public input: FormFieldControl;
   public statusChanges$: Observable<string | boolean>;
   public control: FormControl;

@@ -9,5 +9,17 @@ import { FormControl, Validators } from '@angular/forms';
 export class AppComponent {
   title = 'auk';
 
+  public error = {
+    test: 'test error',
+    a: {
+      b: '2 level'
+    },
+    c: {
+      d: {
+        e: '3 level'
+      }
+    }
+  };
+
   public test = new FormControl(null, [Validators.required]);
 }

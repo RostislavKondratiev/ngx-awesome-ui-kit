@@ -4,18 +4,13 @@ auk-form-field {
   margin-bottom: 0.5rem;
 }
 
-auk-form-field .view-wrap {
+auk-form-field .auk-view-wrap {
   display: flex;
   flex-direction: row;
   align-items: center;
 }
 
-auk-form-field .view-wrap--column {
-  flex-direction: column;
-  align-items: normal;
-}
-
-auk-form-field .input-field {
+auk-form-field .auk-input-field {
   display: flex;
   flex-direction: column;
   width: 100%;

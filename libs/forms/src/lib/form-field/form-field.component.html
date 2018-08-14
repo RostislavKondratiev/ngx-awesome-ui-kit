@@ -1,9 +1,9 @@
-<div class="view-wrap">
+<div class="auk-view-wrap">
   <label>
     <ng-content select="auk-label"></ng-content>
   </label>
-  <div class="input-field">
-    <div class="input-wrap">
+  <div class="auk-input-field">
+    <div class="auk-input-wrap">
       <ng-content></ng-content>
     </div>
     <auk-error *ngIf="availableCustom.indexOf('required') === -1" key="required">This field is required</auk-error>

@@ -2,7 +2,7 @@ import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { AukFormFieldComponent } from './form-field.component';
 import { AukErrorsModule } from '../errors';
-import { AukErrorStrategy } from './error-strategy/error-strategy';
+import { AukErrorStrategy, AukServerErrorStrategy } from './error-strategy/error-strategy';
 
 @NgModule({
   imports: [
@@ -10,7 +10,7 @@ import { AukErrorStrategy } from './error-strategy/error-strategy';
     AukErrorsModule,
   ],
   declarations: [AukFormFieldComponent],
-  providers: [AukErrorStrategy],
+  providers: [AukErrorStrategy, AukServerErrorStrategy],
   exports: [
     AukErrorsModule,
     AukFormFieldComponent,

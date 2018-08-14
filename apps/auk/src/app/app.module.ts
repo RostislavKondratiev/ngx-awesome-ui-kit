@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { NxModule } from '@nrwl/nx';
 import { AukFormFieldModule, AukInputModule } from '@auk/forms';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [AppComponent],
@@ -13,6 +13,7 @@ import { ReactiveFormsModule } from '@angular/forms';
     NxModule.forRoot(),
     AukInputModule,
     AukFormFieldModule,
+    FormsModule,
     ReactiveFormsModule],
   providers: [],
   bootstrap: [AppComponent]

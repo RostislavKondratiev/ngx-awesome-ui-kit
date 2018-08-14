@@ -9,6 +9,8 @@ import { FormControl, Validators } from '@angular/forms';
 export class AppComponent {
   title = 'auk';
 
+  public model;
+
   public error = {
     test: 'test error',
     a: {

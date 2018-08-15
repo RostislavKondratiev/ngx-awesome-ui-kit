@@ -2,25 +2,21 @@ import {
   AfterViewInit,
   ChangeDetectorRef,
   Directive,
-  HostBinding,
   Injector,
   Input,
-  OnDestroy,
-  Optional,
+  OnDestroy, Optional,
   ViewContainerRef
 } from '@angular/core';
 import { FormControl, FormGroupDirective } from '@angular/forms';
-import { Subject } from 'rxjs';
 import { AukFormFieldComponent } from './../form-field/form-field.component';
 import { AukServerErrorStrategy } from './../form-field/error-strategy';
-import { takeUntil } from 'rxjs/operators';
+import { AukErrorBase } from './error-base';
 
 @Directive({
   selector: 'auk-server-error' //tslint:disable-line
 })
-export class AukServerErrorDirective implements OnDestroy, AfterViewInit{
+export class AukServerErrorDirective extends AukErrorBase implements OnDestroy {
   @Input() public key: string[];
-  @HostBinding('hidden') public hidden = true;
 
   @Input()
   public set error(errors) {
@@ -28,44 +24,36 @@ export class AukServerErrorDirective implements OnDestroy, AfterViewInit{
     if (errors && this.errorMessage) {
       this.viewContainer.element.nativeElement.innerHTML = this.errorMessage;
       if (this.control instanceof FormControl) {
-        this.control.setErrors({serverError: this.errorMessage});
+        this.control.setErrors({ serverError: this.errorMessage });
       }
       this.hidden = false;
     }
   };
 
-  protected control: FormControl | FormGroupDirective;
   protected errorMessage: string;
-  protected until$: Subject<void> = new Subject<void>();
 
-  constructor(@Optional() protected container: AukFormFieldComponent,
-              @Optional() public form: FormGroupDirective,
+  constructor(@Optional() public form: FormGroupDirective,
+              protected injector: Injector,
               protected strategy: AukServerErrorStrategy,
               protected viewContainer: ViewContainerRef,
               protected cd: ChangeDetectorRef) {
+    super();
   }
 
-  public ngAfterViewInit() {
-    this.control = this.container ? this.container.control : this.form;
-    this.control.statusChanges
-      .pipe(
-        takeUntil(this.until$),
-      )
-      .subscribe(() => {
-        this.hidden = this.strategy.validate(this.control);
-        this.cd.markForCheck();
-      });
+  protected connect() {
+    const container = this.injector.get(AukFormFieldComponent, null);
+    this.control = container ? container.control : this.form;
+    return this.control.statusChanges;
   }
 
-  public ngOnDestroy() {
-    this.until$.next();
-    this.until$.complete();
+  protected statusChangesHandler() {
+    this.hidden = this.strategy.validate(this.control);
+    this.cd.markForCheck();
   }
-
 
   protected getNestedValue(object: any, path: string[]) {
     return path.reduce(function(prev, curr) {
-      return prev ? prev[curr] : null
-    }, object)
+      return prev ? prev[curr] : null;
+    }, object);
   }
 }

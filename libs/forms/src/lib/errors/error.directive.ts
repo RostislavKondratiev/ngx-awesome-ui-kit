@@ -1,14 +1,18 @@
-import { AfterViewInit, ChangeDetectorRef, Directive, HostBinding, Injector, Input } from '@angular/core';
-import { AukFormFieldComponent } from '../form-field/form-field.component';
+import { ChangeDetectorRef, Directive, Injector, Input } from '@angular/core';
 import { AukErrorBase } from './error-base';
+import { AukFormFieldComponent } from './../form-field/form-field.component';
+import { Observable } from 'rxjs';
 
 @Directive({
   selector: 'auk-error' // tslint:disable-line
 })
-export class AukErrorDirective extends AukErrorBase<AukFormFieldComponent> implements AfterViewInit {
+export class AukErrorDirective extends AukErrorBase {
   @Input() public key: string;
 
-  constructor(protected injector: Injector, protected cd: ChangeDetectorRef) {
+  constructor(
+    protected injector: Injector,
+    protected cd: ChangeDetectorRef
+  ) {
     super();
   }
 
@@ -17,11 +21,12 @@ export class AukErrorDirective extends AukErrorBase<AukFormFieldComponent> imple
     this.cd.markForCheck();
   }
 
-  protected registerParent(): AukFormFieldComponent {
-    return this.injector.get(AukFormFieldComponent);
-  }
-
-  public ngAfterViewInit() {
-    super.ngAfterViewInit();
+  protected connect(): Observable<any> | null {
+    const container = this.injector.get(AukFormFieldComponent, null);
+    if (!container) {
+      return null;
+    }
+    this.control = container.control;
+    return container.statusChanges$;
   }
 }

@@ -20,7 +20,7 @@ export abstract class AukErrorBase implements AfterViewInit, OnDestroy {
   public ngAfterViewInit() {
     this.source = this.connect();
     if (!this.source) {
-      timer(0).subscribe(() => this.hidden = false);
+      setTimeout(() => this.hidden = false, 0);
       return;
     }
     this.source.pipe(takeUntil(this.until$))

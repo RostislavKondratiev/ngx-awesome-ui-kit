@@ -11,6 +11,7 @@ import { FormControl, FormGroupDirective } from '@angular/forms';
 import { AukFormFieldComponent } from './../form-field/form-field.component';
 import { AukServerErrorStrategy } from './../form-field/error-strategy';
 import { AukErrorBase } from './error-base';
+import { skip } from 'rxjs/operators';
 
 @Directive({
   selector: 'auk-server-error' //tslint:disable-line
@@ -22,6 +23,7 @@ export class AukServerErrorDirective extends AukErrorBase implements OnDestroy {
   public set error(errors) {
     this.errorMessage = this.getNestedValue(errors, this.key);
     if (errors && this.errorMessage) {
+      console.log(this.errorMessage);
       this.viewContainer.element.nativeElement.innerHTML = this.errorMessage;
       if (this.control instanceof FormControl) {
         this.control.setErrors({ serverError: this.errorMessage });

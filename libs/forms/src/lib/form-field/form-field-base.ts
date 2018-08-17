@@ -1,6 +1,6 @@
 import { AfterContentInit, ContentChild, OnDestroy } from '@angular/core';
 import { merge, Observable, Subject } from 'rxjs';
-import { FormControl } from '@angular/forms';
+import { NgControl } from '@angular/forms';
 import { map, share, takeUntil } from 'rxjs/operators';
 import { FormFieldControl } from './../core/form-field-control';
 import { AukErrorStrategy } from './error-strategy';
@@ -8,7 +8,7 @@ import { AukErrorStrategy } from './error-strategy';
 export abstract class AukFormFieldBase implements AfterContentInit, OnDestroy {
   @ContentChild(FormFieldControl) public input: FormFieldControl;
   public statusChanges$: Observable<string | boolean>;
-  public control: FormControl;
+  public control: NgControl;
 
   protected until$: Subject<void> = new Subject<void>();
   protected errorStrategy: AukErrorStrategy;
@@ -21,7 +21,8 @@ export abstract class AukFormFieldBase implements AfterContentInit, OnDestroy {
     if (!this.input.control) {
       return;
     }
-    this.control = this.input.control.control as FormControl;
+    console.log(this.input.control);
+    this.control = this.input.control;
     this.statusChanges$ = merge(this.control.statusChanges, this.input.stateChange$)
       .pipe(
         takeUntil(this.until$),

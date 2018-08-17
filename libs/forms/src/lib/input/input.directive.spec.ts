@@ -5,6 +5,8 @@ import { FormControl, Validators } from '@angular/forms';
 import { By } from '@angular/platform-browser';
 import { createComponent } from '../tests/helpers';
 
+//tslint:disable
+
 describe('AukInputDirective', () => {
   describe('AukInputDirective common cases', () => {
     let fixture: ComponentFixture<AukInputCommon>;

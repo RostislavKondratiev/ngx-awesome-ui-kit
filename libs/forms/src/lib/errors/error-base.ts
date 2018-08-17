@@ -1,7 +1,7 @@
 import { AfterViewInit, HostBinding, Input, OnDestroy } from '@angular/core';
-import { Observable, Subject, timer } from 'rxjs';
+import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
-import { FormControl, FormGroupDirective } from '@angular/forms';
+import { FormGroupDirective, NgControl } from '@angular/forms';
 
 
 export abstract class AukErrorBase implements AfterViewInit, OnDestroy {
@@ -9,7 +9,7 @@ export abstract class AukErrorBase implements AfterViewInit, OnDestroy {
   @HostBinding('hidden')
   public hidden = true;
 
-  protected control: FormControl | FormGroupDirective;
+  protected control: NgControl | FormGroupDirective;
   protected source: Observable<boolean | string>;
   protected until$: Subject<void> = new Subject<void>();
 

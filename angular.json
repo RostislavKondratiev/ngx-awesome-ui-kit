@@ -8,7 +8,11 @@
       "sourceRoot": "apps/auk/src",
       "projectType": "application",
       "prefix": "auk",
-      "schematics": {},
+      "schematics": {
+        "@schematics/angular:component": {
+          "styleext": "scss"
+        }
+      },
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-angular:browser",

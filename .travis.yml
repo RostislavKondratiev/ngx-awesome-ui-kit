@@ -5,6 +5,14 @@ node_js:
 
 sudo: false
 
+notifications:
+  email: false
+
+branches:
+  only:
+  - master
+  - development
+
 install:
   - npm install
 

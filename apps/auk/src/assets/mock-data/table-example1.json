@@ -1,0 +1,37 @@
+{
+  "data": [
+    {
+      "id": 1,
+      "name": "First",
+      "address": "Some Street",
+      "number": "8800555353",
+      "email": "dep1@gmail.com"
+    },
+    {
+      "id": 2,
+      "name": "Second",
+      "address": "Some Another Street",
+      "number": "8800666783",
+      "email": "dep2@gmail.com"
+    },
+    {
+      "id": 3,
+      "name": "Third",
+      "address": "Some Another Street",
+      "number": "7352313345",
+      "email": "dep3@gmail.com"
+    },
+    {
+      "id": 4,
+      "name": "Fourth",
+      "address": "Some Street",
+      "number": "8800555353",
+      "email": "dep4@gmail.com"
+    }
+  ],
+  "meta": {
+    "page": 1,
+    "per_page": 25,
+    "total": 100
+  }
+}

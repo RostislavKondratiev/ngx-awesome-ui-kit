@@ -1,0 +1,27 @@
+<auk-table-filters [dataSource]="dataSource">
+  <ng-container *aukFilter="'name'; let control">
+    <input style="max-width: 200px;" class="form-control" [formControl]="control" type="text" name="q" placeholder="Search">
+  </ng-container>
+</auk-table-filters>
+<auk-table [dataSource]="dataSource" aukSort>
+  <ng-container aukColumnDef="name">
+    <auk-header-cell *aukHeaderCellDef class="users-names" auk-sort-header>Name</auk-header-cell>
+    <auk-cell *aukCellDef="let row" class="users-names"> {{row?.name}}</auk-cell>
+  </ng-container>
+  <ng-container aukColumnDef="department">
+    <auk-header-cell *aukHeaderCellDef auk-sort-header> Address</auk-header-cell>
+    <auk-cell *aukCellDef="let row"> {{row?.address}}</auk-cell>
+  </ng-container>
+  <ng-container aukColumnDef="role">
+    <auk-header-cell *aukHeaderCellDef> Number</auk-header-cell>
+    <auk-cell *aukCellDef="let row"> {{row?.number}}</auk-cell>
+  </ng-container>
+  <ng-container aukColumnDef="email">
+    <auk-header-cell *aukHeaderCellDef>E-mail</auk-header-cell>
+    <auk-cell *aukCellDef="let row">{{row?.email}}</auk-cell>
+  </ng-container>
+  <auk-header-row
+    *aukHeaderRowDef="columns"></auk-header-row>
+  <auk-row
+    *aukRowDef="let row; columns: columns"></auk-row>
+</auk-table>

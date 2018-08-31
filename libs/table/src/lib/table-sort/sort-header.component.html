@@ -1,0 +1,7 @@
+<div class="auk-sort-container" (click)="handleClick()">
+  <ng-content></ng-content>
+  <div class="auk-sort-arrow"
+       *ngIf="arrowDirection"
+       [@arrowPosition]="arrowDirection"
+  ></div>
+</div>
